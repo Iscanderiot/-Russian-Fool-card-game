@@ -53,19 +53,52 @@ public class CardTest{
     }
 
     @Test
-    public void testsameSuit1(){
+    public void testSameSuit1(){
         assertTrue(card1.sameSuit(card2));
     }
 
     @Test
-    public void testsameSuit2(){
+    public void testSameSuit2(){
         assertFalse(card2.sameSuit(card3));
     }
 
     @Test
-    public void testsameSuit3(){
+    public void testSameSuit3(){
         assertFalse(card1.sameSuit(card3));
     }
 
+    @Test
+    public void testSameRank1(){
+        assertFalse(card1.sameRank(card2));
+    }
+
+    @Test
+    public void testSameRank2(){
+        assertFalse(card2.sameRank(card3));
+    }
+
+    @Test
+    public void testSameRank3(){
+        assertFalse(card1.sameRank(card3));
+    }
     
+    @Test
+    public void testSameSuit4(){
+        assertTrue(card1.sameSuit(Suit.CLUBS));
+    }
+
+    @Test
+    public void testTrumpCard1(){
+        assertTrue(card1.isTrumpCard(Suit.CLUBS));
+    }
+
+    @Test
+    public void testTrumpCard2(){
+        assertFalse(card1.isTrumpCard(Suit.HEARTS));
+    }
+
+    @Test
+    public void testCanBeBeaten(){
+        
+    }
 }
