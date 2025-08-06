@@ -1,4 +1,4 @@
-
+package model.cards;
 
 import java.util.Comparator;
 import java.util.Random;
@@ -28,7 +28,7 @@ public class Card implements Comparable<Card>{
 
     @Override
     public String toString(){
-        return this.suit.toString() + this.rank.toString();
+        return this.suit.toString() +" "+ this.rank.toString();
     }
 
     public boolean sameRank(Card other){
@@ -94,6 +94,7 @@ public class Card implements Comparable<Card>{
         Suit Trump = Suit.CLUBS;
         System.out.println(card1.canBeBeaten(card2, Trump));
         System.out.println(card3.compareTo(card1));
+        System.out.println(card1);
     }
 
 }

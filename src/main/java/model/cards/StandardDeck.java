@@ -1,4 +1,4 @@
-package cards;
+package model.cards;
 import java.util.Collections;
 import java.util.Stack;
 

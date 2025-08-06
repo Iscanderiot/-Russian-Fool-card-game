@@ -1,3 +1,5 @@
+package model.cards;
+
 
 
 import java.util.ArrayList;

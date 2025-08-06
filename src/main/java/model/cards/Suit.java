@@ -1,4 +1,4 @@
-package cards;
+package model.cards;
 
 enum Suit{
     SPADES,
