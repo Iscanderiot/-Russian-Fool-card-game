@@ -8,6 +8,7 @@ import model.cards.Board;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class CardTest{
     Card card1 = new Card(Suit.CLUBS, Rank.SIX);
@@ -22,8 +23,9 @@ public class CardTest{
     {
     game1.addPlayer(attacker);
     game1.addPlayer(defender);
-    game1.dealCards();
     }
+    Random random = new Random(1);
+
     @Test
     public void testGetRank1(){
         assertEquals(card1.getRank(), Rank.SIX); 
@@ -111,8 +113,22 @@ public class CardTest{
 
     @Test
     public void testCanBeBeaten(){
-        
-        Fight fight = new Fight(game, null, null, null)
+        Card card1 = new Card(Suit.DIAMONDS, Rank.TWO);
+        Card card2 = new Card(Suit.DIAMONDS, Rank.THREE);
+        Card card3 = new Card(Suit.DIAMONDS, Rank.SIX); //attacking card
+        Card card4 = new Card(Suit.SPADES, Rank.TWO);
+        Card card5 = new Card(Suit.HEARTS, Rank.JACK);
+        Card card6 = new Card(Suit.CLUBS, Rank.QUEEN);
 
+        Card card7 = new Card(Suit.HEARTS, Rank.TWO);
+        Card card8 = new Card(Suit.HEARTS, Rank.SEVEN);
+        Card card9 = new Card(Suit.HEARTS, Rank.ACE);
+        Card card10 = new Card(Suit.DIAMONDS, Rank.FIVE);
+        Card card11 = new Card(Suit.DIAMONDS, Rank.TEN);
+        Card card12 = new Card(Suit.DIAMONDS, Rank.ACE);
+        game1.getPlayer(0).takeCard(card1);
+        
+        Fight fight = new Fight(game1, game1.getPlayer(0), game1.getPlayer(1), Suit.HEARTS);
+        
     }
 }
