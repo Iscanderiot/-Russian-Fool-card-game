@@ -94,7 +94,7 @@ public class Card implements Comparable<Card>{
         Suit Trump = Suit.CLUBS;
         System.out.println(card1.canBeBeaten(card2, Trump));
         System.out.println(card3.compareTo(card1));
-        System.out.println(card1);
+        System.out.println(card1.getRank());
     }
 
 }

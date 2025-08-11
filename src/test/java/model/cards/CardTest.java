@@ -3,15 +3,27 @@ package model.cards;
 import org.junit.jupiter.api.Test;
 
 import model.cards.Card;
-
+import model.cards.Game;
+import model.cards.Board;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CardTest{
+import java.util.ArrayList;
 
+public class CardTest{
     Card card1 = new Card(Suit.CLUBS, Rank.SIX);
     Card card2 = new Card(Suit.CLUBS, Rank.JACK);
     Card card3 = new Card(Suit.HEARTS, Rank.KING);
-
+    Board board = new Board();
+    ArrayList<Card> attackerCards = new ArrayList<>();
+    ArrayList<Card> defenderCards = new ArrayList<>();
+    Player attacker = new Player("Josh");
+    Player defender = new Player("Barret");
+    Game game1 = new Game(board);
+    {
+    game1.addPlayer(attacker);
+    game1.addPlayer(defender);
+    game1.dealCards();
+    }
     @Test
     public void testGetRank1(){
         assertEquals(card1.getRank(), Rank.SIX); 
@@ -100,5 +112,7 @@ public class CardTest{
     @Test
     public void testCanBeBeaten(){
         
+        Fight fight = new Fight(game, null, null, null)
+
     }
 }

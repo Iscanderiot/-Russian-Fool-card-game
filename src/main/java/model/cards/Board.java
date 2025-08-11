@@ -5,7 +5,6 @@ import java.util.Random;
 public class Board {
     
     private int ID;
-    private Game game;
     
     public Board(){
         this.ID = new Random().nextInt(100);
