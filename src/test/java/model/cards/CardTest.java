@@ -14,17 +14,7 @@ public class CardTest{
     Card card1 = new Card(Suit.CLUBS, Rank.SIX);
     Card card2 = new Card(Suit.CLUBS, Rank.JACK);
     Card card3 = new Card(Suit.HEARTS, Rank.KING);
-    Board board = new Board();
-    ArrayList<Card> attackerCards = new ArrayList<>();
-    ArrayList<Card> defenderCards = new ArrayList<>();
-    Player attacker = new Player("Josh");
-    Player defender = new Player("Barret");
-    Game game1 = new Game(board);
-    {
-    game1.addPlayer(attacker);
-    game1.addPlayer(defender);
-    }
-    Random random = new Random(1);
+    Card card4 = new Card(Suit.SPADES, Rank.SEVEN);
 
     @Test
     public void testGetRank1(){
@@ -113,22 +103,10 @@ public class CardTest{
 
     @Test
     public void testCanBeBeaten(){
-        Card card1 = new Card(Suit.DIAMONDS, Rank.TWO);
-        Card card2 = new Card(Suit.DIAMONDS, Rank.THREE);
-        Card card3 = new Card(Suit.DIAMONDS, Rank.SIX); //attacking card
-        Card card4 = new Card(Suit.SPADES, Rank.TWO);
-        Card card5 = new Card(Suit.HEARTS, Rank.JACK);
-        Card card6 = new Card(Suit.CLUBS, Rank.QUEEN);
-
-        Card card7 = new Card(Suit.HEARTS, Rank.TWO);
-        Card card8 = new Card(Suit.HEARTS, Rank.SEVEN);
-        Card card9 = new Card(Suit.HEARTS, Rank.ACE);
-        Card card10 = new Card(Suit.DIAMONDS, Rank.FIVE);
-        Card card11 = new Card(Suit.DIAMONDS, Rank.TEN);
-        Card card12 = new Card(Suit.DIAMONDS, Rank.ACE);
-        game1.getPlayer(0).takeCard(card1);
-        
-        Fight fight = new Fight(game1, game1.getPlayer(0), game1.getPlayer(1), Suit.HEARTS);
-        
+        Suit TrumpSuit = Suit.HEARTS;
+        assertTrue(card1.canBeBeaten(card3, TrumpSuit));
+        assertTrue(card1.canBeBeaten(card2, TrumpSuit));
+        assertFalse(card2.canBeBeaten(card1, TrumpSuit));
+        assertFalse(card1.canBeBeaten(card4, TrumpSuit));
     }
 }

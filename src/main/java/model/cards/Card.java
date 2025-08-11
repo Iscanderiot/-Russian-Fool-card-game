@@ -62,7 +62,7 @@ public class Card implements Comparable<Card>{
                 return true;
             }
             else{
-                if (this.sameRank(otherCard)){
+                if (this.sameSuit(otherCard)){
                     return (otherCard.getRank().getValue() > this.getRank().getValue());
                 }
                 else{
