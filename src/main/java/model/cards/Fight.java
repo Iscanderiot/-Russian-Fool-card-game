@@ -83,26 +83,29 @@ public class Fight {
     }
 
     public String playOptionTerminal(Card card){
-        boolean flag1 = hasPassCards(card);
-        boolean flag2 = hasBeatingCards(card);
+        System.out.println(defender.getName()+ " puts: "+ card);
+        System.out.print("Your cards: ");
+        System.out.println(attacker.getCards());
         String message = "";
         if (hasPassCards(card)){
-            message = "Passing cards";
+            message = "Passing cards: ";
             ArrayList<Integer> indexes = findPassCardsIndexes(card);
-            for (int index : indexes){
-                message += defender.getCards().get(index).toString();
+            for (int i = 0; i < indexes.size() - 1; i++){
+                message += defender.getCards().get(i).toString()+", ";
             }
+            message += defender.getCards().get(indexes.size()).toString();
             message +="\n";
         }
         else{
             message = "You have no cards to pass\n";
         }
         if (hasBeatingCards(card)){
-            message = "Beating cards:";
+            message += "Beating cards: ";
             ArrayList<Integer> indexes = findBeatingCardsIndexes(card);
-            for (int index : indexes){
-                message += defender.getCards().get(index).toString();
+            for (int i = 0; i < indexes.size() - 1; i++){
+                message += defender.getCards().get(i).toString()+", ";
             }
+            message += defender.getCards().get(indexes.size()).toString();
             message +="\n";
         }
         else{

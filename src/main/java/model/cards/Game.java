@@ -17,7 +17,7 @@ public class Game {
 
     public void dealCards(){
         for (Player player : players){
-            for (int i = 0; i < 6; i++){
+            for (int i = 0; i < 7; i++){
             player.takeCard(deck.pickTopCard());
             }
         }
