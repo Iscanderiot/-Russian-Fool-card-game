@@ -72,13 +72,49 @@ public class Fight {
             return indexes;
     }
 
-    public void initiateFight(){
-        Card putCard = attacker.putRandomCard();
-        System.out.println(putCard);
-        System.out.println("Attackers cards: "+attacker.getCards());
-        System.out.println("Defenders cards: "+defender.getCards());
-        System.out.println("Beating cards: "+findBeatingCardsIndexes(putCard));
-        System.out.println("Passing cards: "+findPassCardsIndexes(putCard));
+    public boolean hasBeatingCards(Card card){
+        ArrayList<Integer> cards = findBeatingCardsIndexes(card);
+        return (cards.size() != 0);
+    }
+
+    public boolean hasPassCards(Card card){
+        ArrayList<Integer> cards = findPassCardsIndexes(card);
+        return (cards.size() != 0);
+    }
+
+    public String playOptionTerminal(Card card){
+        boolean flag1 = hasPassCards(card);
+        boolean flag2 = hasBeatingCards(card);
+        String message = "";
+        if (hasPassCards(card)){
+            message = "Passing cards";
+            ArrayList<Integer> indexes = findPassCardsIndexes(card);
+            for (int index : indexes){
+                message += defender.getCards().get(index).toString();
+            }
+            message +="\n";
+        }
+        else{
+            message = "You have no cards to pass\n";
+        }
+        if (hasBeatingCards(card)){
+            message = "Beating cards:";
+            ArrayList<Integer> indexes = findBeatingCardsIndexes(card);
+            for (int index : indexes){
+                message += defender.getCards().get(index).toString();
+            }
+            message +="\n";
+        }
+        else{
+            message += "You have no beating cards\n";
+        }
+        return message;
+    }
+
+    public void initiateFight(Card card){
+        System.out.println(playOptionTerminal(card));
+        
+        
         
     }
 
@@ -93,7 +129,7 @@ public class Fight {
         System.out.println(game.getPlayers());
         game.dealCards();
         Fight fight = new Fight(game, game.getPlayer(0), game.getPlayer(1), trumpSuit);
-        fight.initiateFight();
+        fight.initiateFight(attacker.putRandomCard());
 
     }
     

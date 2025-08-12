@@ -31,7 +31,6 @@ public class Player {
         this.cards.add(card);
     }
 
-
     public Card putRandomCard(){
         Random rand = new Random();
         int randomNumber = rand.nextInt(this.getNumberOfCards());
