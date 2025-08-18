@@ -31,36 +31,34 @@ public class Fight {
         sidePlayers.add(player);
     }
 
-    public ArrayList<Integer> findBeatingCardsIndexes(Card attackersCard){
-        ArrayList<Card> defendersCards = this.defender.getCards();
-        ArrayList<Integer> indexes = new ArrayList<>();
-        if (attackersCard.getSuit() == this.trumpSuit){
-            for (int i = 0; i < defendersCards.size(); i++){
-                if ((defendersCards.get(i).getSuit() == trumpSuit) && (defendersCards.get(i).compareTo(attackersCard) == 1)){
-                    indexes.add(i);
-                }
+    public ArrayList<Integer> findBeatingCardsIndexes(Card attackersCard) {
+    ArrayList<Card> defendersCards = this.defender.getCards();
+    ArrayList<Integer> indexes = new ArrayList<>();
+
+    for (int i = 0; i < defendersCards.size(); i++) {
+        Card defendersCard = defendersCards.get(i);
+        boolean attackerIsTrump = attackersCard.getSuit() == trumpSuit;
+        boolean defenderIsTrump = defendersCard.getSuit() == trumpSuit;
+
+        if (attackerIsTrump) {
+            // Only a higher trump can beat a trump
+            if (defenderIsTrump && defendersCard.compareTo(attackersCard) > 0) {
+                indexes.add(i);
+            }
+        } else {
+            if (defenderIsTrump) {
+                // Any trump beats non-trump
+                indexes.add(i);
+            } else if (defendersCard.getSuit() == attackersCard.getSuit()
+                    && defendersCard.compareTo(attackersCard) > 0) {
+                // Higher card of the same suit
+                indexes.add(i);
             }
         }
-        else{
-            for (int i = 0; i < defendersCards.size(); i++){
-                if ((defendersCards.get(i).getSuit() == trumpSuit)){
-                    indexes.add(i);
-                }
-                else{
-                    if (attackersCard.getSuit() == defendersCards.get(i).getSuit()){
-                    if (defendersCards.get(i).compareTo(attackersCard) == 1){
-                        indexes.add(i);
-                    }
-                }
-                else{
-                    continue;
-                }
-                }
-            }
-        }
-        return indexes;
     }
 
+    return indexes;
+}
     public ArrayList<Integer> findPassCardsIndexes(Card attackersCard){
         ArrayList<Card> defendersCards = this.defender.getCards();
         ArrayList<Integer> indexes = new ArrayList<>();
@@ -87,32 +85,36 @@ public class Fight {
         System.out.print("Your cards: ");
         System.out.println(attacker.getCards());
         String message = "";
-        if (hasPassCards(card)){
-            message = "Passing cards: ";
-            ArrayList<Integer> indexes = findPassCardsIndexes(card);
-            for (int i = 0; i < indexes.size() - 1; i++){
-                message += defender.getCards().get(i).toString()+", ";
-            }
-            message += defender.getCards().get(indexes.size()).toString();
-            message +="\n";
+        if (hasPassCards(card)) {
+        message = "Passing cards: ";
+        ArrayList<Integer> indexes = findPassCardsIndexes(card);
+        for (int i = 0; i < indexes.size(); i++) {
+        message += defender.getCards().get(indexes.get(i)).toString();
+        if (i != indexes.size() - 1) {
+            message += ", ";
         }
-        else{
-            message = "You have no cards to pass\n";
-        }
-        if (hasBeatingCards(card)){
-            message += "Beating cards: ";
-            ArrayList<Integer> indexes = findBeatingCardsIndexes(card);
-            for (int i = 0; i < indexes.size() - 1; i++){
-                message += defender.getCards().get(i).toString()+", ";
-            }
-            message += defender.getCards().get(indexes.size()).toString();
-            message +="\n";
-        }
-        else{
-            message += "You have no beating cards\n";
-        }
-        return message;
     }
+    message += "\n";
+} else {
+    message = "You have no cards to pass\n";
+}
+    
+
+if (hasBeatingCards(card)) {
+    message += "Beating cards: ";
+    ArrayList<Integer> indexes = findBeatingCardsIndexes(card);
+    for (int i = 0; i < indexes.size(); i++) {
+        message += defender.getCards().get(indexes.get(i)).toString();
+        if (i != indexes.size() - 1) {
+            message += ", ";
+        }
+    }
+    message += "\n";
+} else {
+    message += "You have no beating cards\n";
+}
+return message;
+}
 
     public void initiateFight(Card card){
         System.out.println(playOptionTerminal(card));

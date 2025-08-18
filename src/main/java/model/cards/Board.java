@@ -13,7 +13,6 @@ public class Board {
     public int getID(){
         return this.ID;
     }
-    
 
     public static void main(String[] args) {
         Board board = new Board();

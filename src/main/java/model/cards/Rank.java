@@ -22,7 +22,7 @@ enum Rank  {
     }
 
     public int getValue() {
-        return value;
+        return this.value;
     }
 
     public int compareByValue(Rank other){
@@ -35,4 +35,8 @@ enum Rank  {
         return Character.toUpperCase(lower.charAt(0)) + lower.substring(1);
     }
 
+    public static void main(String[] args) {
+        System.out.println(Rank.FOUR.getValue());
+        System.out.println(Rank.FOUR.toString());
+    }
 }
